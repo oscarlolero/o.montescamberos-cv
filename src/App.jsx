@@ -1,6 +1,6 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
+import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Menu, X } from 'lucide-react'
 
 // ---- Profile data (edit this to update content) ----
 const PROFILE = {
@@ -105,24 +105,25 @@ const EXPERIENCE = [
 ]
 
 // ---- Small UI atoms ----
-const Badge = ({ children }: { children: React.ReactNode }) => (
+const Badge = ({ children }) => (
   <span className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/90 backdrop-blur-md">
     {children}
   </span>
 )
 
-const Card = ({ children }: { children: React.ReactNode }) => (
+const Card = ({ children }) => (
   <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#1f1533]/70 to-[#120c1c]/70 p-5 shadow-xl backdrop-blur-xl">
     {children}
   </div>
 )
 
-export default function App() {
+const App = () => {
   // Stagger animation preset for list items
   const itemTransition = useMemo(
     () => ({ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }),
     []
   )
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
     <div className="min-h-screen text-white">
@@ -141,9 +142,10 @@ export default function App() {
 
       {/* Top nav */}
       <header className="sticky top-0 z-20 border-b border-white/10 bg-black/30 backdrop-blur-md">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
           <span className="text-sm tracking-wide text-white/70">Portfolio / CV</span>
-          <div className="flex items-center gap-3 text-sm">
+          {/* Desktop links */}
+          <div className="hidden items-center gap-2 text-sm md:flex">
             <a href="#skills" className="hover:text-violet-300">Skills</a>
             <a href="#experience" className="hover:text-violet-300">Experience</a>
             <a href="#education" className="hover:text-violet-300">Education</a>
@@ -154,7 +156,31 @@ export default function App() {
               <Linkedin className="h-4 w-4" /> LinkedIn
             </a>
           </div>
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 p-2 text-white/80 md:hidden"
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((v) => !v)}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </nav>
+        {/* Mobile dropdown */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <div className="mx-auto max-w-6xl px-4 pb-2">
+              <div className="rounded-xl border border-white/10 bg-black/60 p-2 backdrop-blur-md">
+                <a href="#skills" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Skills</a>
+                <a href="#experience" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Experience</a>
+                <a href="#education" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Education</a>
+                <a href={PROFILE.links.github} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">GitHub</a>
+                <a href={PROFILE.links.linkedin} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Hero */}
@@ -275,3 +301,5 @@ export default function App() {
     </div>
   )
 }
+
+export default App

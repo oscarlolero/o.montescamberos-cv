@@ -7,6 +7,8 @@ export default defineConfig({
   plugins: [react()],
   base: '/o.montescamberos-cv/',
   build: {
-    sourcemap: true
-  }
+    sourcemap: true,
+  },
 })
+
+

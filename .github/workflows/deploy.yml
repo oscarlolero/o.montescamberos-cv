@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (Vite + npm)
+name: Deploy to GitHub Pages (Vite + pnpm)
 
 on:
   push:
@@ -25,13 +25,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install --frozen-lockfile=false
 
       - name: Build
-        run: npm run build
+        run: pnpm build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
