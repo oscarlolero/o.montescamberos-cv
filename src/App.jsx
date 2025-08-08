@@ -129,15 +129,8 @@ const App = () => {
     <div className="min-h-screen text-white">
       {/* Animated purple/dark background */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(1200px_600px_at_20%_-10%,#6d28d9_0%,transparent_40%),radial-gradient(1000px_500px_at_100%_10%,#3b0764_0%,transparent_35%),linear-gradient(135deg,#0b0711_0%,#130a1f_45%,#1b1030_100%)] animate-[gradient_20s_ease_infinite]" />
+        <div className="absolute inset-0 bg-[radial-gradient(1200px_600px_at_20%_-10%,#6d28d9_0%,transparent_40%),radial-gradient(1000px_500px_at_100%_10%,#3b0764_0%,transparent_35%),linear-gradient(135deg,#0b0711_0%,#130a1f_45%,#1b1030_100%)]" />
         <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-30 bg-violet-700" />
-        <style>{`
-          @keyframes gradient { 
-            0% { filter: hue-rotate(0deg);} 
-            50% { filter: hue-rotate(20deg);} 
-            100% { filter: hue-rotate(0deg);} 
-          }
-        `}</style>
       </div>
 
       {/* Top nav */}
