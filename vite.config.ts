@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 // If deploying to <user>.github.io root, set base: '/'
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: '/o.montescamberos-cv/',
   build: {
     sourcemap: true
   }
