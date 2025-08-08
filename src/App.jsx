@@ -145,7 +145,7 @@ const App = () => {
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <span className="text-sm tracking-wide text-white/70">Portfolio / CV</span>
           {/* Desktop links */}
-          <div className="hidden items-center gap-2 text-sm md:flex">
+          <div className="hidden items-center gap-4 text-sm md:flex">
             <a href="#skills" className="hover:text-violet-300">Skills</a>
             <a href="#experience" className="hover:text-violet-300">Experience</a>
             <a href="#education" className="hover:text-violet-300">Education</a>
