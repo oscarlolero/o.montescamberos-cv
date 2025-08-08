@@ -106,13 +106,13 @@ const EXPERIENCE = [
 
 // ---- Small UI atoms ----
 const Badge = ({ children }) => (
-  <span className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-2 py-1 text-sm text-white/90 backdrop-blur-md">
+  <span className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/90 backdrop-blur-md">
     {children}
   </span>
 )
 
 const Card = ({ children }) => (
-  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#1f1533]/70 to-[#120c1c]/70 p-2 shadow-xl backdrop-blur-xl">
+  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#1f1533]/70 to-[#120c1c]/70 p-5 shadow-xl backdrop-blur-xl">
     {children}
   </div>
 )
@@ -142,7 +142,7 @@ const App = () => {
 
       {/* Top nav */}
       <header className="sticky top-0 z-20 border-b border-white/10 bg-black/30 backdrop-blur-md">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-2 py-2">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <span className="text-sm tracking-wide text-white/70">Portfolio / CV</span>
           {/* Desktop links */}
           <div className="hidden items-center gap-2 text-sm md:flex">
@@ -170,13 +170,13 @@ const App = () => {
         {/* Mobile dropdown */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="mx-auto max-w-6xl px-2 pb-2">
+            <div className="mx-auto max-w-6xl px-6 pb-2">
               <div className="rounded-xl border border-white/10 bg-black/60 p-2 backdrop-blur-md">
-                <a href="#skills" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-2 py-2 text-sm hover:bg-white/5">Skills</a>
-                <a href="#experience" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-2 py-2 text-sm hover:bg-white/5">Experience</a>
-                <a href="#education" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-2 py-2 text-sm hover:bg-white/5">Education</a>
-                <a href={PROFILE.links.github} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-2 py-2 text-sm hover:bg-white/5">GitHub</a>
-                <a href={PROFILE.links.linkedin} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-2 py-2 text-sm hover:bg-white/5">LinkedIn</a>
+                <a href="#skills" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Skills</a>
+                <a href="#experience" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Experience</a>
+                <a href="#education" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Education</a>
+                <a href={PROFILE.links.github} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">GitHub</a>
+                <a href={PROFILE.links.linkedin} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">LinkedIn</a>
               </div>
             </div>
           </div>
@@ -184,7 +184,7 @@ const App = () => {
       </header>
 
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-2 pb-10 pt-14">
+      <section className="mx-auto max-w-6xl px-6 pb-10 pt-14">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -221,7 +221,7 @@ const App = () => {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="mx-auto max-w-6xl px-2 pb-14">
+      <section id="skills" className="mx-auto max-w-6xl px-6 pb-14">
         <h2 className="mb-5 text-2xl font-semibold">Technical Skills</h2>
         <Card>
           <div className="flex flex-wrap gap-2">
@@ -233,7 +233,7 @@ const App = () => {
       </section>
 
       {/* Experience */}
-      <section id="experience" className="mx-auto max-w-6xl px-2 pb-14">
+      <section id="experience" className="mx-auto max-w-6xl px-6 pb-14">
         <h2 className="mb-5 text-2xl font-semibold">Professional Experience</h2>
         <div className="grid gap-4 md:grid-cols-2">
           {EXPERIENCE.map((exp) => (
@@ -280,7 +280,7 @@ const App = () => {
       </section>
 
       {/* Education */}
-      <section id="education" className="mx-auto max-w-6xl px-2 pb-20">
+      <section id="education" className="mx-auto max-w-6xl px-6 pb-20">
         <h2 className="mb-5 text-2xl font-semibold">Education</h2>
         <Card>
           <p className="text-white/85">
@@ -291,7 +291,7 @@ const App = () => {
 
       {/* Footer */}
       <footer className="border-t border-white/10 bg-black/30">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-2 py-6 text-sm text-white/60">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-sm text-white/60">
           <span>© {new Date().getFullYear()} {PROFILE.name}</span>
           <a className="inline-flex items-center gap-1 hover:text-violet-300" href={PROFILE.links.detailedCV} target="_blank" rel="noreferrer">
             View detailed CV <ExternalLink className="h-4 w-4" />
