@@ -36,6 +36,7 @@ const experience = [
     feature: {
       label: 'Current client engagement',
       company: 'Heron Intelligence',
+      url: 'https://www.heron-intelligence.com',
       role: 'Senior Software Engineer · Jan 2026 — Present',
       body: 'Building the client-facing research platform used by institutional investors to read proprietary transcripts, navigate management-intelligence workflows, and generate AI-driven research.',
       bullets: [
@@ -60,11 +61,13 @@ const experience = [
     projects: [
       {
         name: 'Silvermine',
+        url: 'https://www.silverminegroup.com/',
         period: 'Oct 2023 — Oct 2024',
         summary: 'Improved tax-payment journeys and SEO through SSR; optimized client code, supported AWS cost reduction, and resolved production issues.',
       },
       {
         name: 'GlamScan',
+        url: 'https://glamscan.webflow.io/',
         period: 'Aug 2021 — May 2024',
         summary: 'Built web, iOS, and Android capabilities for an AR nail-polish try-on product, including AI nail detection, e-commerce, performance, and GraphQL work.',
       },
@@ -119,6 +122,12 @@ function ExternalLink({ href, children, className = '', download = false }) {
   )
 }
 
+function CompanyLink({ name, url }) {
+  if (!url) return name
+
+  return <a className="project-link" href={url} target="_blank" rel="noreferrer">{name}<ArrowUpRight aria-hidden="true" /></a>
+}
+
 function ExperienceItem({ item, index }) {
   return (
     <Reveal className="experience-item">
@@ -133,7 +142,7 @@ function ExperienceItem({ item, index }) {
         {item.feature && (
           <div className="feature-project">
             <p className="eyebrow">{item.feature.label}</p>
-            <div className="feature-project__title"><h4>{item.feature.company}</h4><span>{item.feature.role}</span></div>
+            <div className="feature-project__title"><h4><CompanyLink name={item.feature.company} url={item.feature.url} /></h4><span>{item.feature.role}</span></div>
             <p className="feature-project__body">{item.feature.body}</p>
             <ul className="impact-list impact-list--light">{item.feature.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
             <p className="feature-project__stack">{item.feature.stack}</p>
@@ -144,7 +153,7 @@ function ExperienceItem({ item, index }) {
             <p className="eyebrow">Selected client work</p>
             {item.projects.map((project) => (
               <div className="selected-project" key={project.name}>
-                <div><h4>{project.name}</h4><span>{project.period}</span></div>
+                <div><h4><CompanyLink name={project.name} url={project.url} /></h4><span>{project.period}</span></div>
                 <p>{project.summary}</p>
               </div>
             ))}

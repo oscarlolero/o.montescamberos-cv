@@ -74,6 +74,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-
 .metric span { max-width: 19ch; color: var(--muted-ink); font-size: 12px; line-height: 1.4; }
 
 .section { padding-block: clamp(96px, 13vw, 176px); }
+#experience, #expertise, #background { scroll-margin-top: -32px; }
 .section-heading { display: grid; grid-template-columns: minmax(140px, .42fr) minmax(0, 1fr); gap: 40px; margin-bottom: clamp(64px, 8vw, 112px); }
 .section-heading__label { display: flex; gap: 24px; padding-top: 13px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 .section-heading__label span:first-child { color: var(--blue); }
@@ -98,6 +99,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-
 .feature-project .eyebrow { color: rgba(255, 255, 255, .7); }
 .feature-project__title { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 28px; border-bottom: 1px solid rgba(255, 255, 255, .35); padding-bottom: 24px; }
 .feature-project__title h4 { margin: 0; font-family: 'Libre Bodoni', Georgia, serif; font-size: clamp(2.4rem, 4.5vw, 4.8rem); font-weight: 500; line-height: .95; letter-spacing: -.045em; }
+.project-link { display: inline-flex; align-items: baseline; gap: .13em; transition: opacity 180ms ease; }
+.project-link:hover { opacity: .72; }
+.project-link svg { width: .48em; height: .48em; flex: 0 0 auto; }
 .feature-project__title span { font-size: 12px; font-weight: 600; text-align: right; }
 .feature-project__body { max-width: 760px; margin: 30px 0 0; font-size: 17px; line-height: 1.7; }
 .impact-list--light li { color: rgba(255, 255, 255, .88); }
