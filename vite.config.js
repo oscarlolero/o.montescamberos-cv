@@ -1,14 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// NOTE: If your repository name is different, set base to '/<repo>/'.
-// If deploying to <user>.github.io root, set base: '/'
+// The custom GitHub Pages domain serves this site from the domain root.
 export default defineConfig({
   plugins: [react()],
-  base: '/o.montescamberos-cv/',
+  base: '/',
   build: {
     sourcemap: true,
   },
 })
-
 
