@@ -38,7 +38,7 @@ const experience = [
       label: 'Current client engagement',
       company: 'Heron Intelligence',
       url: 'https://www.heron-intelligence.com',
-      role: 'Senior Software Engineer · Jan 2026 — Present',
+      role: 'Senior Software Engineer · Dec 2024 — Present',
       body: 'Building an institutional-investor research platform with specialized company tracking, personalized watchlists, and AI workflows over a proprietary interview corpus.',
       bullets: [
         'Optimized database queries and layered client/server caching for high-volume research and platform workflows.',
