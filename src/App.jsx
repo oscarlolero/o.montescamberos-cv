@@ -29,6 +29,7 @@ const skillGroups = [
 const experience = [
   {
     company: 'DaCodes',
+    url: 'https://dacodes.com/',
     role: 'Senior Software Engineer',
     period: 'Dec 2024 — Present',
     location: 'Remote',
