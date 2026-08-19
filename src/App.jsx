@@ -43,6 +43,7 @@ const experience = [
       bullets: [
         'Optimized database queries and layered client/server caching for high-volume research and platform workflows.',
         'Built a complex personalized-watchlist and specialized company-tracking system for investor research.',
+        'Built the institutional-investor dashboard from the ground up, with configurable widgets and resizable, customizable data tables.',
         'Developed real-time, RAG-powered AI chat across 100K+ proprietary interviews and 5K+ companies.',
         'Strengthened security for online payment systems powered by Stripe.',
         'Shipped a WebSocket notification system that replaced a polling-based flow for research and platform activity.',
