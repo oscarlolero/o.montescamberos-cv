@@ -39,7 +39,7 @@ const experience = [
       company: 'Heron Intelligence',
       url: 'https://www.heron-intelligence.com',
       role: 'Senior Software Engineer · Dec 2024 — Present',
-      body: 'Building an institutional-investor research platform with specialized company tracking, personalized watchlists, and AI workflows over a proprietary interview corpus.',
+      body: 'Building a full-stack institutional-investor research platform, including backend development with Next.js, specialized company tracking, personalized watchlists, and AI workflows over a proprietary interview corpus.',
       bullets: [
         'Optimized database queries and layered client/server caching for high-volume research and platform workflows.',
         'Built a complex personalized-watchlist and specialized company-tracking system for investor research.',
@@ -47,7 +47,7 @@ const experience = [
         'Strengthened security for online payment systems powered by Stripe.',
         'Shipped a WebSocket notification system that replaced a polling-based flow for research and platform activity.',
       ],
-      stack: 'React · TypeScript · Node.js · PostgreSQL · Redis · AWS · WebSockets · LLMs',
+      stack: 'React · Next.js · TypeScript · Node.js · PostgreSQL · Redis · AWS · WebSockets · LLMs',
     },
   },
   {
