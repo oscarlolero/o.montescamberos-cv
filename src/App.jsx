@@ -12,8 +12,8 @@ const PROFILE = {
 
 const metrics = [
   { value: '7+', label: 'years building products' },
-  { value: '100K+', label: 'interviews in the AI data platform' },
-  { value: '5K+', label: 'companies represented' },
+  { value: '4', label: 'industries: fintech, AI, e-commerce & consulting' },
+  { value: '100K+', label: 'interviews available in the AI data platform' },
   { value: 'EN / ES', label: 'professional communication' },
 ]
 
@@ -38,18 +38,20 @@ const experience = [
       company: 'Heron Intelligence',
       url: 'https://www.heron-intelligence.com',
       role: 'Senior Software Engineer · Jan 2026 — Present',
-      body: 'Building the client-facing research platform used by institutional investors to read proprietary transcripts, navigate management-intelligence workflows, and generate AI-driven research.',
+      body: 'Building an institutional-investor research platform with specialized company tracking, personalized watchlists, and AI workflows over a proprietary interview corpus.',
       bullets: [
-        'Shipped a WebSocket notification system that replaced polling for research and platform activity.',
-        'Led a dashboard redesign across information architecture, component model, and interaction patterns.',
-        'Improved cross-stack performance through query optimization and layered client/server caching.',
-        'Launched the Heron Intelligence marketing site in Webflow with CMS and publishing workflows.',
+        'Optimized database queries and layered client/server caching for high-volume research and platform workflows.',
+        'Built a complex personalized-watchlist and specialized company-tracking system for investor research.',
+        'Developed real-time, RAG-powered AI chat across 100K+ proprietary interviews and 5K+ companies.',
+        'Strengthened security for online payment systems powered by Stripe.',
+        'Shipped a WebSocket notification system that replaced a polling-based flow for research and platform activity.',
       ],
       stack: 'React · TypeScript · Node.js · PostgreSQL · Redis · AWS · WebSockets · LLMs',
     },
   },
   {
     company: 'Jonajo Consulting',
+    url: 'https://www.jonajo.com/',
     role: 'Senior Software Engineer',
     period: 'May 2021 — Dec 2024',
     location: 'Remote',
@@ -75,6 +77,7 @@ const experience = [
   },
   {
     company: 'Prime Consultoría',
+    url: 'https://prime-consultoria.com.mx/',
     role: 'Full-Stack Web & Mobile Developer',
     period: 'Jan 2021 — Sep 2024',
     location: 'Remote',
@@ -134,7 +137,7 @@ function ExperienceItem({ item, index }) {
       <div className="experience-item__rail" aria-hidden="true">{String(index + 1).padStart(2, '0')}</div>
       <article>
         <div className="experience-item__header">
-          <div><h3>{item.company}</h3><p className="experience-item__role">{item.role}</p></div>
+          <div><h3><CompanyLink name={item.company} url={item.url} /></h3><p className="experience-item__role">{item.role}</p></div>
           <div className="experience-item__meta"><time>{item.period}</time><span>{item.location}</span></div>
         </div>
         <p className="experience-item__intro">{item.intro}</p>
