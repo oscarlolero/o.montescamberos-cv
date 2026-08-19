@@ -176,7 +176,7 @@ export default function App() {
             <p className="hero__summary">Seven-plus years delivering web, mobile, cloud, real-time, and AI-enabled products—from the interface through the infrastructure.</p>
             <div className="hero__actions">
               <a className="button button--primary" href="#experience">Explore my work <ArrowDownRight aria-hidden="true" /></a>
-              <ExternalLink className="button button--secondary" href={PROFILE.resume} download>Download résumé</ExternalLink>
+              <ExternalLink className="button button--secondary" href={PROFILE.resume} download>Download CV</ExternalLink>
             </div>
           </motion.div>
           <motion.aside className="current-role" aria-label="Current role" initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }} animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>
@@ -222,7 +222,7 @@ export default function App() {
         <div className="site-footer__links">
           <a href={PROFILE.linkedin} target="_blank" rel="noreferrer"><Linkedin aria-hidden="true" /> LinkedIn</a>
           <a href={PROFILE.github} target="_blank" rel="noreferrer"><Github aria-hidden="true" /> GitHub</a>
-          <ExternalLink href={PROFILE.resume} download>Résumé</ExternalLink>
+          <ExternalLink href={PROFILE.resume} download>CV</ExternalLink>
         </div>
         <span>© {new Date().getFullYear()}</span>
       </footer>
