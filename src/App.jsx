@@ -1,298 +1,231 @@
-import { useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Menu, X } from 'lucide-react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowDownRight, ArrowUpRight, Download, Github, Linkedin, Mail } from 'lucide-react'
 
-// ---- Profile data (edit this to update content) ----
 const PROFILE = {
   name: 'Oscar Montes Camberos',
-  title: 'Software Engineer – Full Stack, Mobile & Cloud',
-  location: 'Silicon Valley / Mexico',
   email: 'o.montescamberos@gmail.com',
   phone: '+52 56 4669 0182',
-  links: {
-    linkedin: 'https://www.linkedin.com/in/omontescamberos/',
-    github: 'https://github.com/oscarlolero',
-    detailedCV: 'https://tinyurl.com/oscarmontescamberos-detailedcv',
-  },
+  linkedin: 'https://www.linkedin.com/in/omontescamberos/',
+  github: 'https://github.com/oscarlolero',
+  resume: `${import.meta.env.BASE_URL}Oscar-Montes-Camberos-CV.pdf`,
 }
 
-const SKILLS = [
-  'JavaScript / TypeScript',
-  'React / Next.js',
-  'Vue / Vuetify',
-  'Node.js / Express',
-  'GraphQL / Apollo',
-  'AWS / GCP',
-  'PostgreSQL / MongoDB',
-  'Redis',
-  'Docker / Kubernetes',
-  'Swift (iOS)',
-  'Java (Android)',
-  'Flutter (Dart)',
-  'Testing: Jest, Cypress, Playwright',
+const metrics = [
+  { value: '7+', label: 'years building products' },
+  { value: '100K+', label: 'interviews in the AI data platform' },
+  { value: '5K+', label: 'companies represented' },
+  { value: 'EN / ES', label: 'professional communication' },
 ]
 
-const EXPERIENCE = [
+const skillGroups = [
+  ['01', 'Frontend', 'React, TypeScript, Next.js, Vue.js, Vuetify, AngularJS, Tailwind CSS, Ant Design'],
+  ['02', 'Backend & APIs', 'Node.js, Express, GraphQL, REST APIs, TypeORM, PostgreSQL, Redis, SQL Server'],
+  ['03', 'Cloud & delivery', 'AWS, GCP, Kubernetes, Docker, CI/CD, Cloud Run, Cloud Build, Linux'],
+  ['04', 'Real-time & AI', 'WebSockets, streaming output, long-running job state, LLM integration patterns'],
+  ['05', 'Mobile', 'Swift, Java, Flutter, Realm, CameraX, Room'],
+  ['06', 'Quality & collaboration', 'Jest, Cypress, Playwright, GitHub, Figma, code reviews, technical documentation, Agile/Scrum'],
+]
+
+const experience = [
   {
     company: 'DaCodes',
-    role: 'Senior Software Developer',
-    period: 'Jan 2025 – Present',
-    bullets: [
-      'Built an AI-powered platform to analyze earnings calls/interviews for investors.',
-      'Full-stack ownership: React (TS), Node.js, PostgreSQL, Redis.',
-      'Deployed and scaled on AWS (Amplify, ECS, ECR).',
-    ],
-    tech: [
-      'React (TS, AntD, Tailwind, Zustand, TanStack Query)',
-      'Node.js (Express, TypeORM, Celebrate, Tsyringe)',
-      'PostgreSQL, Redis, Jest',
-      'AWS (Amplify, ECS, ECR)',
-    ],
+    role: 'Senior Software Engineer',
+    period: 'Dec 2024 — Present',
+    location: 'Remote',
+    intro: 'End-to-end delivery for product teams in fintech, AI, and data-intensive startups—from architecture and implementation to performance work, code review, and cross-functional planning.',
+    feature: {
+      label: 'Current client engagement',
+      company: 'Heron Intelligence',
+      role: 'Senior Software Engineer · Jan 2026 — Present',
+      body: 'Building the client-facing research platform used by institutional investors to read proprietary transcripts, navigate management-intelligence workflows, and generate AI-driven research.',
+      bullets: [
+        'Shipped a WebSocket notification system that replaced polling for research and platform activity.',
+        'Led a dashboard redesign across information architecture, component model, and interaction patterns.',
+        'Improved cross-stack performance through query optimization and layered client/server caching.',
+        'Launched the Heron Intelligence marketing site in Webflow with CMS and publishing workflows.',
+      ],
+      stack: 'React · TypeScript · Node.js · PostgreSQL · Redis · AWS · WebSockets · LLMs',
+    },
   },
   {
     company: 'Jonajo Consulting',
-    role: 'Senior Software Developer',
-    period: 'Jun 2021 – Dec 2024',
+    role: 'Senior Software Engineer',
+    period: 'May 2021 — Dec 2024',
+    location: 'Remote',
+    intro: 'Delivered web and mobile products across React, Next.js, Node.js, GraphQL, Firebase, Docker, AWS, and GCP, with CI/CD and cloud infrastructure ownership.',
     bullets: [
-      'Delivered web & mobile solutions optimizing performance and engagement.',
-      'Achieved 99.9% uptime with scalable GCP/AWS deployments.',
-      'Worked across React, Next.js, Node.js, GraphQL, Firebase, Docker.',
+      'Built native and cross-platform mobile applications with Swift, Java, and Flutter, including robust offline functionality.',
+      'Translated Figma systems into production interfaces using modular architecture, MVC patterns, and Agile delivery.',
     ],
-    tech: ['React, Next.js', 'Node.js, GraphQL', 'GCP, AWS', 'Docker'],
+    projects: [
+      {
+        name: 'Silvermine',
+        period: 'Oct 2023 — Oct 2024',
+        summary: 'Improved tax-payment journeys and SEO through SSR; optimized client code, supported AWS cost reduction, and resolved production issues.',
+      },
+      {
+        name: 'GlamScan',
+        period: 'Aug 2021 — May 2024',
+        summary: 'Built web, iOS, and Android capabilities for an AR nail-polish try-on product, including AI nail detection, e-commerce, performance, and GraphQL work.',
+      },
+    ],
   },
   {
-    company: 'Silvermine (client)',
-    role: 'Front-End Engineer',
-    period: 'Oct 2023 – Oct 2024',
+    company: 'Prime Consultoría',
+    role: 'Full-Stack Web & Mobile Developer',
+    period: 'Jan 2021 — Sep 2024',
+    location: 'Remote',
+    intro: 'Developed product and automation workflows with Node.js, Vue.js, Flutter, .NET/SOAP services, SQL Server, and Cloud Run.',
     bullets: [
-      'Improved UX for tax payment processes and SEO via SSR.',
-      'Reduced load time by optimizing client-side code.',
-      'AWS cost optimization and debugging.',
+      'Built operator and technician workflows integrated with SAP Business One for reporting, equipment verification, work logging, and push-notification revisions.',
+      'Delivered sortable reporting dashboards and automated Banxico, SAP, and PEMEX workflows using Puppeteer and Playwright.',
     ],
-    tech: ['AngularJS', 'React', 'Next.js', 'SQL Server', 'AWS'],
   },
   {
-    company: 'GlamScan (Web & Mobile)',
-    role: 'Full‑Stack / iOS / Android Developer',
-    period: 'Aug 2021 – May 2024',
-    bullets: [
-      'Virtual try‑on with AR for nail polish; AI nail detection.',
-      'Improved APIs and page performance; e‑commerce integration.',
-      'Swift (Realm), Java (CameraX, Room), Flutter; GraphQL backend.',
-    ],
-    tech: ['React', 'Node.js', 'Express', 'Docker', 'GCP', 'Swift', 'Java', 'Flutter', 'GraphQL'],
+    company: 'Universidad de Guanajuato',
+    role: 'Web Developer · Temporary Contract',
+    period: 'Sep 2020 — Nov 2020',
+    location: 'Salamanca, Mexico',
+    intro: "Designed and implemented the website for the university's special laboratories.",
   },
   {
-    company: 'PRIME Consulting',
-    role: 'Full‑Stack Web & Mobile Developer',
-    period: 'Jan 2021 – Sep 2024',
-    bullets: [
-      'Automation bots for PEMEX portals using Puppeteer/Playwright.',
-      'Deployed on Cloud Run; scheduling with NodeCron; SQL Server.',
-    ],
-    tech: ['Node.js', 'Puppeteer', 'Playwright', 'Cloud Run', 'SQL Server'],
-  },
-  {
-    company: 'MOPE IT',
-    role: 'Full‑Stack Developer',
-    period: 'Jan 2019 – Jan 2020',
-    bullets: [
-      'Admin panel for reports/config, driver tracking with Maps.',
-      'Online payments via OpenPay; Firebase auth.',
-    ],
-    tech: ['Node.js', 'Express', 'Google Maps API', 'Firebase', 'OpenPay', 'Bootstrap'],
+    company: 'Mope IT',
+    role: 'Full-Stack Web Developer · Temporary Contract',
+    period: 'Aug 2019 — Mar 2020',
+    location: 'Irapuato, Mexico',
+    intro: 'Built an operations admin platform and Node.js services for a home-cleaning company, integrating OpenPay, Google Maps, Firebase authentication, notifications, Firestore, and Realtime Database.',
   },
 ]
 
-// ---- Small UI atoms ----
-const Badge = ({ children }) => (
-  <span className="inline-flex items-center rounded-2xl border border-white/10 bg-white/5 px-3 py-1 text-sm text-white/90 backdrop-blur-md">
-    {children}
-  </span>
-)
+function Reveal({ children, className = '' }) {
+  return <div className={className}>{children}</div>
+}
 
-const Card = ({ children }) => (
-  <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#1f1533]/70 to-[#120c1c]/70 p-5 shadow-xl backdrop-blur-xl">
-    {children}
-  </div>
-)
-
-const App = () => {
-  // Stagger animation preset for list items
-  const itemTransition = useMemo(
-    () => ({ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }),
-    []
-  )
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+function SectionHeading({ id, number, kicker, title, copy }) {
   return (
-    <div className="min-h-screen text-white">
-      {/* Animated purple/dark background */}
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(1200px_600px_at_20%_-10%,#6d28d9_0%,transparent_40%),radial-gradient(1000px_500px_at_100%_10%,#3b0764_0%,transparent_35%),linear-gradient(135deg,#0b0711_0%,#130a1f_45%,#1b1030_100%)]" />
-        <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-30 bg-violet-700" />
-      </div>
-
-      {/* Top nav */}
-      <header className="sticky top-0 z-20 border-b border-white/10 bg-black/30 backdrop-blur-md">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <span className="text-sm tracking-wide text-white/70">Portfolio / CV</span>
-          {/* Desktop links */}
-          <div className="hidden items-center gap-4 text-sm md:flex">
-            <a href="#skills" className="hover:text-violet-300">Skills</a>
-            <a href="#experience" className="hover:text-violet-300">Experience</a>
-            <a href="#education" className="hover:text-violet-300">Education</a>
-            <a href={PROFILE.links.github} target="_blank" className="inline-flex items-center gap-1 hover:text-violet-300" rel="noreferrer">
-              <Github className="h-4 w-4" /> GitHub
-            </a>
-            <a href={PROFILE.links.linkedin} target="_blank" className="inline-flex items-center gap-1 hover:text-violet-300" rel="noreferrer">
-              <Linkedin className="h-4 w-4" /> LinkedIn
-            </a>
-          </div>
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 p-2 text-white/80 md:hidden"
-            aria-label="Toggle menu"
-            aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((v) => !v)}
-          >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </nav>
-        {/* Mobile dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="mx-auto max-w-6xl px-6 pb-2">
-              <div className="rounded-xl border border-white/10 bg-black/60 p-2 backdrop-blur-md">
-                <a href="#skills" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Skills</a>
-                <a href="#experience" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Experience</a>
-                <a href="#education" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">Education</a>
-                <a href={PROFILE.links.github} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">GitHub</a>
-                <a href={PROFILE.links.linkedin} target="_blank" rel="noreferrer" onClick={() => setIsMenuOpen(false)} className="block rounded-lg px-3 py-2 text-sm hover:bg-white/5">LinkedIn</a>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pb-10 pt-14">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="grid items-center gap-8 md:grid-cols-[1.3fr_1fr]"
-        >
-          <div>
-            <h1 className="text-4xl font-bold leading-tight md:text-5xl">
-              {PROFILE.name}
-            </h1>
-            <p className="mt-3 text-lg text-white/80">{PROFILE.title}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-4 text-white/80">
-              <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" />{PROFILE.location}</span>
-              <a className="inline-flex items-center gap-2 hover:text-violet-300" href={`mailto:${PROFILE.email}`}><Mail className="h-4 w-4" />{PROFILE.email}</a>
-              <a className="inline-flex items-center gap-2 hover:text-violet-300" href={`tel:${PROFILE.phone.replace(/\s|\+/g,'')}`}><Phone className="h-4 w-4" />{PROFILE.phone}</a>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href={PROFILE.links.linkedin} target="_blank" rel="noreferrer" className="rounded-xl bg-violet-600/90 px-4 py-2 text-sm font-medium shadow-lg shadow-violet-900/40 transition hover:bg-violet-500">
-                Connect on LinkedIn
-              </a>
-              <a href={PROFILE.links.github} target="_blank" rel="noreferrer" className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium backdrop-blur-md transition hover:border-violet-400/60 hover:bg-white/10">
-                View GitHub
-              </a>
-            </div>
-          </div>
-
-          <Card>
-            <h3 className="text-lg font-semibold">Summary</h3>
-            <p className="mt-2 text-white/80 text-sm leading-relaxed">
-              Software Engineer with 7+ years building user‑centric, scalable apps across web, mobile, and cloud. Focus on performance, DX, and reliable delivery using React/Vue, Node.js, Swift, and AWS/GCP.
-            </p>
-          </Card>
-        </motion.div>
-      </section>
-
-      {/* Skills */}
-      <section id="skills" className="mx-auto max-w-6xl px-6 pb-14">
-        <h2 className="mb-5 text-2xl font-semibold">Technical Skills</h2>
-        <Card>
-          <div className="flex flex-wrap gap-2">
-            {SKILLS.map((s) => (
-              <Badge key={s}>{s}</Badge>
-            ))}
-          </div>
-        </Card>
-      </section>
-
-      {/* Experience */}
-      <section id="experience" className="mx-auto max-w-6xl px-6 pb-14">
-        <h2 className="mb-5 text-2xl font-semibold">Professional Experience</h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          {EXPERIENCE.map((exp) => (
-            <motion.div
-              key={exp.company + exp.period}
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.35 }}
-            >
-              <Card>
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-lg font-semibold">{exp.company}</h3>
-                    <p className="text-sm text-white/70">{exp.role}</p>
-                  </div>
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
-                    {exp.period}
-                  </span>
-                </div>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-white/85">
-                  {exp.bullets.map((b, i) => (
-                    <motion.li
-                      key={i}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.2, delay: i * 0.05 }}
-                      variants={itemTransition}
-                    >
-                      {b}
-                    </motion.li>
-                  ))}
-                </ul>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {exp.tech.map((t) => (
-                    <Badge key={t}>{t}</Badge>
-                  ))}
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Education */}
-      <section id="education" className="mx-auto max-w-6xl px-6 pb-20">
-        <h2 className="mb-5 text-2xl font-semibold">Education</h2>
-        <Card>
-          <p className="text-white/85">
-            <span className="font-medium">Universidad de Guanajuato</span> — Systems Engineering (GPA 9.0/10)
-          </p>
-        </Card>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/10 bg-black/30">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 text-sm text-white/60">
-          <span>© {new Date().getFullYear()} {PROFILE.name}</span>
-          <a className="inline-flex items-center gap-1 hover:text-violet-300" href={PROFILE.links.detailedCV} target="_blank" rel="noreferrer">
-            View detailed CV <ExternalLink className="h-4 w-4" />
-          </a>
-        </div>
-      </footer>
+    <div className="section-heading">
+      <div className="section-heading__label"><span>{number}</span><span>{kicker}</span></div>
+      <div><h2 id={id}>{title}</h2>{copy && <p>{copy}</p>}</div>
     </div>
   )
 }
 
-export default App
+function ExternalLink({ href, children, className = '', download = false }) {
+  return (
+    <a className={`arrow-link ${className}`} href={href} target={download ? undefined : '_blank'} rel={download ? undefined : 'noreferrer'} download={download || undefined}>
+      <span>{children}</span>
+      {download ? <Download aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
+    </a>
+  )
+}
+
+function ExperienceItem({ item, index }) {
+  return (
+    <Reveal className="experience-item">
+      <div className="experience-item__rail" aria-hidden="true">{String(index + 1).padStart(2, '0')}</div>
+      <article>
+        <div className="experience-item__header">
+          <div><h3>{item.company}</h3><p className="experience-item__role">{item.role}</p></div>
+          <div className="experience-item__meta"><time>{item.period}</time><span>{item.location}</span></div>
+        </div>
+        <p className="experience-item__intro">{item.intro}</p>
+        {item.bullets && <ul className="impact-list">{item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
+        {item.feature && (
+          <div className="feature-project">
+            <p className="eyebrow">{item.feature.label}</p>
+            <div className="feature-project__title"><h4>{item.feature.company}</h4><span>{item.feature.role}</span></div>
+            <p className="feature-project__body">{item.feature.body}</p>
+            <ul className="impact-list impact-list--light">{item.feature.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
+            <p className="feature-project__stack">{item.feature.stack}</p>
+          </div>
+        )}
+        {item.projects && (
+          <div className="selected-projects">
+            <p className="eyebrow">Selected client work</p>
+            {item.projects.map((project) => (
+              <div className="selected-project" key={project.name}>
+                <div><h4>{project.name}</h4><span>{project.period}</span></div>
+                <p>{project.summary}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </article>
+    </Reveal>
+  )
+}
+
+export default function App() {
+  const reduceMotion = useReducedMotion()
+  return (
+    <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <header className="site-header">
+        <nav className="site-nav" aria-label="Primary navigation">
+          <a className="wordmark" href="#top" aria-label="Oscar Montes Camberos, back to top"><span>OM</span><span>Senior Software Engineer</span></a>
+          <div className="site-nav__links"><a href="#experience">Experience</a><a href="#expertise">Expertise</a><a href="#background">Background</a></div>
+          <a className="nav-contact" href={`mailto:${PROFILE.email}`}><Mail aria-hidden="true" /><span>Let’s talk</span></a>
+        </nav>
+      </header>
+
+      <main id="main-content">
+        <section className="hero" id="top" aria-labelledby="hero-title">
+          <motion.div className="hero__copy" initial={reduceMotion ? false : { opacity: 0, y: 18 }} animate={reduceMotion ? undefined : { opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
+            <p className="eyebrow hero__eyebrow"><span className="status-dot" aria-hidden="true" />Senior Software Engineer · Remote</p>
+            <h1 id="hero-title">I turn complex product workflows into <em>clear, reliable software.</em></h1>
+            <p className="hero__summary">Seven-plus years delivering web, mobile, cloud, real-time, and AI-enabled products—from the interface through the infrastructure.</p>
+            <div className="hero__actions">
+              <a className="button button--primary" href="#experience">Explore my work <ArrowDownRight aria-hidden="true" /></a>
+              <ExternalLink className="button button--secondary" href={PROFILE.resume} download>Download résumé</ExternalLink>
+            </div>
+          </motion.div>
+          <motion.aside className="current-role" aria-label="Current role" initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }} animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>
+            <div className="current-role__topline"><span>Currently</span><span>2026</span></div>
+            <div className="current-role__main"><p>DaCodes × Heron Intelligence</p><h2>Building AI research tools for institutional investors.</h2></div>
+            <p className="current-role__footer">React · TypeScript · Node.js · PostgreSQL · Redis · AWS</p>
+          </motion.aside>
+        </section>
+
+        <section className="metrics" aria-label="Career highlights">{metrics.map((metric) => <div className="metric" key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></div>)}</section>
+
+        <section className="section" id="experience" aria-labelledby="experience-title">
+          <SectionHeading id="experience-title" number="01" kicker="Experience" title="Work with real stakes and measurable complexity." copy="Product engineering across finance, AI, commerce, field operations, mobile, and automation." />
+          <div className="experience-list">{experience.map((item, index) => <ExperienceItem item={item} index={index} key={`${item.company}-${item.period}`} />)}</div>
+        </section>
+
+        <section className="section expertise" id="expertise" aria-labelledby="expertise-title">
+          <SectionHeading id="expertise-title" number="02" kicker="Expertise" title="Broad range. Product-minded execution." copy="A full-stack toolkit organized around shipping dependable products—not collecting technology badges." />
+          <div className="skill-grid">{skillGroups.map(([number, title, skills]) => <Reveal className="skill-group" key={title}><span>{number}</span><h3>{title}</h3><p>{skills}</p></Reveal>)}</div>
+        </section>
+
+        <section className="section background" id="background" aria-labelledby="background-title">
+          <SectionHeading id="background-title" number="03" kicker="Background" title="Engineering fundamentals, fluent collaboration." />
+          <div className="background-grid">
+            <Reveal className="background-card background-card--education">
+              <p className="eyebrow">Education</p><div><h3>Universidad de Guanajuato</h3><p>Systems Engineering</p></div>
+              <div className="background-card__meta"><span>Aug 2016 — 2021</span><strong>GPA 9.0 / 10</strong></div>
+            </Reveal>
+            <Reveal className="background-card background-card--languages" delay={0.06}>
+              <p className="eyebrow">Languages</p><dl><div><dt>Spanish</dt><dd>Native</dd></div><div><dt>English</dt><dd>Fluent · Professional working proficiency</dd></div></dl>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="contact" aria-labelledby="contact-title">
+          <div><p className="eyebrow">Have a complex product to ship?</p><h2 id="contact-title">Let’s make it clear, fast, and dependable.</h2></div>
+          <a className="contact__email" href={`mailto:${PROFILE.email}`}><span>{PROFILE.email}</span><ArrowUpRight aria-hidden="true" /></a>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <div><strong>{PROFILE.name}</strong><span>{PROFILE.phone}</span></div>
+        <div className="site-footer__links">
+          <a href={PROFILE.linkedin} target="_blank" rel="noreferrer"><Linkedin aria-hidden="true" /> LinkedIn</a>
+          <a href={PROFILE.github} target="_blank" rel="noreferrer"><Github aria-hidden="true" /> GitHub</a>
+          <ExternalLink href={PROFILE.resume} download>Résumé</ExternalLink>
+        </div>
+        <span>© {new Date().getFullYear()}</span>
+      </footer>
+    </div>
+  )
+}
