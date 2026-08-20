@@ -39,7 +39,7 @@ const experience = [
       company: 'Heron Intelligence',
       url: 'https://www.heron-intelligence.com',
       role: 'Senior Software Engineer · Dec 2024 — Present',
-      body: 'Building a full-stack institutional-investor research platform, including backend development with Next.js, specialized company tracking, personalized watchlists, and AI workflows over a proprietary interview corpus.',
+      body: 'Building a full-stack institutional-investor research platform, including backend development with Express.js, specialized company tracking, personalized watchlists, and AI workflows over a proprietary interview corpus.',
       bullets: [
         'Optimized database queries and layered client/server caching for high-volume research and platform workflows.',
         'Built a complex personalized-watchlist and specialized company-tracking system for investor research.',
