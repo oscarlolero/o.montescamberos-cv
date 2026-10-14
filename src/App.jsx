@@ -21,7 +21,7 @@ const skillGroups = [
   ['01', 'Frontend', 'React, TypeScript, Next.js, Vue.js, Vuetify, AngularJS, Tailwind CSS, Ant Design'],
   ['02', 'Backend & APIs', 'Node.js, Express, GraphQL, REST APIs, TypeORM, PostgreSQL, Redis, SQL Server'],
   ['03', 'Cloud & delivery', 'AWS (Amplify, ECS/ECR, EC2, RDS, SQS, Lambda, IAM, S3, CloudWatch), GCP (Cloud Run, GKE, Compute Engine, Cloud Functions, Cloud Build, Cloud Storage, VPC), Docker, CI/CD, Linux'],
-  ['04', 'Real-time & AI', 'WebSockets, streaming output, long-running job state, LLM integration patterns'],
+  ['04', 'Real-time & AI', 'WebSockets, Server-Sent Events (SSE), streaming output, long-running job state, LLM integration patterns'],
   ['05', 'Mobile', 'Swift, Java, Flutter, Realm, CameraX, Room'],
   ['06', 'Quality & collaboration', 'Jest, Cypress, Playwright, GitHub, Figma, code reviews, technical documentation, Agile/Scrum'],
 ]
@@ -46,9 +46,9 @@ const experience = [
         'Built the institutional-investor dashboard from the ground up, with configurable widgets and resizable, customizable data tables.',
         'Developed real-time, RAG-powered AI chat across 100K+ proprietary interviews and 5K+ companies.',
         'Strengthened security for online payment systems powered by Stripe.',
-        'Shipped a WebSocket notification system that replaced a polling-based flow for research and platform activity.',
+        'Shipped real-time notification systems using WebSockets and Server-Sent Events (SSE), replacing a polling-based flow for research and platform activity.',
       ],
-      stack: 'React · Next.js · TypeScript · Node.js · PostgreSQL · Redis · AWS · WebSockets · LLMs',
+      stack: 'React · Next.js · TypeScript · Node.js · PostgreSQL · Redis · AWS · WebSockets · Server-Sent Events (SSE) · LLMs',
     },
   },
   {
