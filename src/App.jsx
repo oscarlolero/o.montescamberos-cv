@@ -20,7 +20,7 @@ const metrics = [
 const skillGroups = [
   ['01', 'Frontend', 'React, TypeScript, Next.js, Vue.js, Vuetify, AngularJS, Tailwind CSS, Ant Design'],
   ['02', 'Backend & APIs', 'Node.js, Express, GraphQL, REST APIs, TypeORM, PostgreSQL, Redis, SQL Server'],
-  ['03', 'Cloud & delivery', 'AWS, GCP, Kubernetes, Docker, CI/CD, Cloud Run, Cloud Build, Linux'],
+  ['03', 'Cloud & delivery', 'AWS (Amplify, ECS/ECR, EC2, RDS, SQS, Lambda, IAM, S3, CloudWatch), GCP (Cloud Run, GKE, Compute Engine, Cloud Functions, Cloud Build, Cloud Storage, VPC), Docker, CI/CD, Linux'],
   ['04', 'Real-time & AI', 'WebSockets, streaming output, long-running job state, LLM integration patterns'],
   ['05', 'Mobile', 'Swift, Java, Flutter, Realm, CameraX, Room'],
   ['06', 'Quality & collaboration', 'Jest, Cypress, Playwright, GitHub, Figma, code reviews, technical documentation, Agile/Scrum'],
@@ -31,15 +31,15 @@ const experience = [
     company: 'DaCodes',
     url: 'https://dacodes.com/',
     role: 'Senior Software Engineer',
-    period: 'Dec 2024 — Present',
+    period: 'Dec 2024 — Sep 2026',
     location: 'Remote',
-    intro: 'End-to-end delivery for product teams in fintech, AI, and data-intensive startups—from architecture and implementation to performance work, code review, and cross-functional planning.',
+    intro: 'Owned end-to-end delivery for product teams in fintech, AI, and data-intensive startups—from architecture and implementation to performance work, code review, and cross-functional planning.',
     feature: {
-      label: 'Current client engagement',
+      label: 'Client engagement',
       company: 'Heron Intelligence',
       url: 'https://www.heron-intelligence.com',
-      role: 'Senior Software Engineer · Dec 2024 — Present',
-      body: 'Building a full-stack institutional-investor research platform, including backend development with Express.js, specialized company tracking, personalized watchlists, and AI workflows over a proprietary interview corpus.',
+      role: 'Senior Software Engineer · Dec 2024 — Sep 2026',
+      body: 'Built a full-stack institutional-investor research platform, including backend development with Express.js, specialized company tracking, personalized watchlists, and AI workflows over a proprietary interview corpus.',
       bullets: [
         'Optimized database queries and layered client/server caching for high-volume research and platform workflows.',
         'Built a complex personalized-watchlist and specialized company-tracking system for investor research.',
@@ -67,13 +67,13 @@ const experience = [
         name: 'Silvermine',
         url: 'https://www.silverminegroup.com/',
         period: 'Oct 2023 — Oct 2024',
-        summary: 'Improved tax-payment journeys and SEO through SSR; optimized client code, supported AWS cost reduction, and resolved production issues.',
+        summary: 'Improved tax-payment flows and SEO for a U.S. truck-driver tax platform through SSR; supported AWS cost reduction and resolved production issues using SQS and RDS.',
       },
       {
         name: 'GlamScan',
         url: 'https://glamscan.webflow.io/',
         period: 'Aug 2021 — May 2024',
-        summary: 'Built web, iOS, and Android capabilities for an AR nail-polish try-on product, including AI nail detection, e-commerce, performance, and GraphQL work.',
+        summary: 'Built web and mobile capabilities for an AR nail-polish try-on product using React, GraphQL, MongoDB Atlas, Docker, and GCP Cloud Storage, Cloud Run, VPC, Compute Engine, and Kubernetes.',
       },
     ],
   },
@@ -87,6 +87,7 @@ const experience = [
     bullets: [
       'Built operator and technician workflows integrated with SAP Business One for reporting, equipment verification, work logging, and push-notification revisions.',
       'Delivered sortable reporting dashboards and automated Banxico, SAP, and PEMEX workflows using Puppeteer and Playwright.',
+      'Deployed PEMEX automation bots on Cloud Run and AWS Lambda, scheduled jobs with NodeCron, and implemented failover strategies.',
     ],
   },
   {
@@ -193,9 +194,9 @@ export default function App() {
               <ExternalLink className="button button--secondary" href={PROFILE.resume} download>Download CV</ExternalLink>
             </div>
           </motion.div>
-          <motion.aside className="current-role" aria-label="Current role" initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }} animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>
-            <div className="current-role__topline"><span>Currently</span><span>2026</span></div>
-            <div className="current-role__main"><p>DaCodes × Heron Intelligence</p><h2>Building AI research tools for institutional investors.</h2></div>
+          <motion.aside className="current-role" aria-label="Most recent role" initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }} animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}>
+            <div className="current-role__topline"><span>Most recent</span><span>Dec 2024 — Sep 2026</span></div>
+            <div className="current-role__main"><p>DaCodes × Heron Intelligence</p><h2>Built AI research tools for institutional investors.</h2></div>
             <p className="current-role__footer">React · TypeScript · Node.js · PostgreSQL · Redis · AWS</p>
           </motion.aside>
         </section>
