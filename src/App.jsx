@@ -7,7 +7,7 @@ const PROFILE = {
   phone: '+52 56 4669 0182',
   linkedin: 'https://www.linkedin.com/in/omontescamberos/',
   github: 'https://github.com/oscarlolero',
-  resume: `${import.meta.env.BASE_URL}Oscar-Montes-Camberos-CV.pdf`,
+  resume: `${import.meta.env.BASE_URL}Oscar-Montes-Camberos-v7.2.0.pdf`,
 }
 
 const metrics = [
@@ -20,10 +20,10 @@ const metrics = [
 const skillGroups = [
   ['01', 'Frontend', 'React, TypeScript, Next.js, Vue.js, Vuetify, AngularJS, Tailwind CSS, Ant Design'],
   ['02', 'Backend & APIs', 'Node.js, Express, GraphQL, REST APIs, TypeORM, PostgreSQL, Redis, SQL Server'],
-  ['03', 'Cloud & delivery', 'AWS (Amplify, ECS/ECR, EC2, RDS, SQS, Lambda, IAM, S3, CloudWatch), GCP (Cloud Run, GKE, Compute Engine, Cloud Functions, Cloud Build, Cloud Storage, VPC), Docker, CI/CD, Linux'],
-  ['04', 'Real-time & AI', 'WebSockets, Server-Sent Events (SSE), streaming output, long-running job state, LLM integration patterns'],
+  ['03', 'Cloud & delivery', 'AWS (Amplify, ECS/ECR, EC2, RDS, SQS, Lambda, IAM, S3, CloudWatch), GCP (Cloud Run, GKE, Compute Engine, Cloud Functions, Cloud Build, Cloud Storage, VPC), Docker, CI/CD, Linux, Datadog, recovery strategies'],
+  ['04', 'Real-time & AI', 'WebSockets, Server-Sent Events (SSE), streaming output, long-running job state, LLM integration patterns, Codex, Claude Code, Cursor'],
   ['05', 'Mobile', 'Swift, Java, Flutter, Realm, CameraX, Room'],
-  ['06', 'Quality & collaboration', 'Jest, Cypress, Playwright, GitHub, Figma, code reviews, technical documentation, Agile/Scrum'],
+  ['06', 'Quality & operations', 'Jest, Cypress, Playwright, GitHub, Figma, observability, incident response, root-cause analysis, code reviews, technical documentation, Agile/Scrum'],
 ]
 
 const experience = [
@@ -33,7 +33,7 @@ const experience = [
     role: 'Senior Software Engineer',
     period: 'Dec 2024 — Sep 2026',
     location: 'Remote',
-    intro: 'Owned end-to-end delivery for product teams in fintech, AI, and data-intensive startups—from architecture and implementation to performance work, code review, and cross-functional planning.',
+    intro: 'Owned end-to-end delivery for product teams in fintech, AI, and data-intensive startups—from architecture and implementation through production monitoring, incident response, recovery improvements, performance work, code review, and cross-functional planning.',
     feature: {
       label: 'Client engagement',
       company: 'Heron Intelligence',
@@ -47,8 +47,11 @@ const experience = [
         'Developed real-time, RAG-powered AI chat across 100K+ proprietary interviews and 5K+ companies.',
         'Strengthened security for online payment systems powered by Stripe.',
         'Shipped real-time notification systems using WebSockets and Server-Sent Events (SSE), replacing a polling-based flow for research and platform activity.',
+        'Used AWS CloudWatch to monitor production services, investigate logs and metrics, and support incident response, root-cause analysis, and recovery across the platform.',
+        'Coordinated work across multiple repositories and features with three mid-level developers, assigning tasks, setting priorities, reviewing code, mentoring, and unblocking technical and production issues.',
+        'Proposed architectural approaches and evaluated tools for performance monitoring and error tracking; reported on response times, performance improvements, and production error trends.',
       ],
-      stack: 'React · Next.js · TypeScript · Node.js · PostgreSQL · Redis · AWS · WebSockets · Server-Sent Events (SSE) · LLMs',
+      stack: 'React · Next.js · TypeScript · Node.js · PostgreSQL · Redis · AWS · CloudWatch · WebSockets · Server-Sent Events (SSE) · LLMs',
     },
   },
   {
@@ -67,13 +70,13 @@ const experience = [
         name: 'Silvermine',
         url: 'https://www.silverminegroup.com/',
         period: 'Oct 2023 — Oct 2024',
-        summary: 'Improved tax-payment flows and SEO for a U.S. truck-driver tax platform through SSR; supported AWS cost reduction and resolved production issues using SQS and RDS.',
+        summary: 'Improved tax-payment flows and SEO for a U.S. truck-driver tax platform through SSR; used Datadog to monitor application health, investigate production issues, support root-cause analysis, and implement corrective fixes using AngularJS, React, Next.js, SQL Server, SQS, and RDS.',
       },
       {
         name: 'GlamScan',
         url: 'https://glamscan.webflow.io/',
         period: 'Aug 2021 — May 2024',
-        summary: 'Built web and mobile capabilities for an AR nail-polish try-on product using React, GraphQL, MongoDB Atlas, Docker, and GCP Cloud Storage, Cloud Run, VPC, Compute Engine, and Kubernetes.',
+        summary: 'Designed the end-to-end architecture and owned deployments, observability, incident response, and performance optimization for web and mobile capabilities of an AR nail-polish virtual try-on product. Served as Technical Lead for six developers (four junior and two mid-level) for roughly two years, guiding frontend, backend, and cloud delivery by assigning work, setting priorities, reviewing code, mentoring developers, resolving production issues, and reporting performance metrics and improvements. Built AI nail detection, e-commerce integrations, and GraphQL backend workflows using React, GraphQL, MongoDB Atlas, Docker, and GCP Cloud Storage, Cloud Run, VPC, Compute Engine, and Kubernetes.',
       },
     ],
   },
