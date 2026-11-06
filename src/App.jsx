@@ -7,7 +7,7 @@ const PROFILE = {
   phone: '+52 56 4669 0182',
   linkedin: 'https://www.linkedin.com/in/omontescamberos/',
   github: 'https://github.com/oscarlolero',
-  resume: `${import.meta.env.BASE_URL}Oscar-Montes-Camberos-v7.2.0.pdf`,
+  resume: `${import.meta.env.BASE_URL}Oscar-Montes-Camberos-v7.2.1.pdf`,
 }
 
 const metrics = [
@@ -84,7 +84,7 @@ const experience = [
     company: 'Prime Consultoría',
     url: 'https://prime-consultoria.com.mx/',
     role: 'Full-Stack Web & Mobile Developer',
-    period: 'Jan 2021 — Sep 2024',
+    period: 'Aug 2020 — May 2021',
     location: 'Remote',
     intro: 'Developed product and automation workflows with Node.js, Vue.js, Flutter, .NET/SOAP services, SQL Server, and Cloud Run.',
     bullets: [
